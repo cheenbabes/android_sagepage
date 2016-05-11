@@ -6,18 +6,51 @@
 	android:background="@drawable/layout_bg_holo"
 	android:layout_width="fill_parent">
 	
-	<TextView
+	<!--<TextView-->
+		<!--android:layout_width="wrap_content"-->
+		<!--android:layout_height="wrap_content"-->
+		<!--android:layout_marginTop="24dp"-->
+		<!--android:layout_gravity="center_horizontal"-->
+		<!--android:textSize="20sp"-->
+		<!--android:text="Be a Sage Page By Page"/>-->
+	<!-- -->
+	<!--Use this to add space between wheels and header-->
+	<!--<Space-->
+		<!--android:layout_width="wrap_content"-->
+		<!--android:layout_height="24dp" />-->
+	<LinearLayout
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="24dp"
-		android:layout_gravity="center_horizontal"
-		android:textSize="20sp"
-		android:text="Please select the city"/>
+		android:layout_gravity="center_horizontal">
 	
-	
-	<kankan.wheel.widget.WheelView android:id="@+id/city"
-		android:layout_height="110dp"
-		android:layout_width="wrap_content"
-        android:layout_gravity="center_vertical"/>
+		<kankan.wheel.widget.WheelView android:id="@+id/book"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:paddingRight="12dp"/>
+
+		<kankan.wheel.widget.WheelView android:id="@+id/time_length"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:paddingRight="12dp"
+			android:paddingLeft="12dp"/>
+
+		<kankan.wheel.widget.WheelView android:id="@+id/digits"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:paddingRight="12dp"
+			android:paddingLeft="12dp"/>
+	</LinearLayout>
+
+	<TextView
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_marginTop="24dp"
+	android:layout_gravity="center_horizontal"
+	android:textSize="20sp"
+	android:text="To read"/>
+
 
 </LinearLayout>
