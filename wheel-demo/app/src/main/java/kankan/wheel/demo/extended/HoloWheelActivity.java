@@ -55,7 +55,7 @@ public class HoloWheelActivity extends Activity {
         digits.addScrollingListener(scrolledListener);
 
         //force update on initial app open
-//        updateText();
+        updateText();
 
     }
 
@@ -97,12 +97,12 @@ public class HoloWheelActivity extends Activity {
         String digitsText = numberAdapter.getItemText(digits.getCurrentItem()).toString();
 
         Integer numberSelected = Integer.parseInt(digitsText);
-        if(numberSelected > 1){
-            //lol hack for plurals
-            digitsText = digitsText + "s";
-        }
 
-        int totalDays, pagesPerDay, bookPages, days = 0;
+        int days = 0;
+        int pagesPerDay=0;
+        int bookPages=0;
+        int totalDays =0;
+
         switch(timeText){
             case "Week":
                 days = 7;
@@ -145,17 +145,14 @@ public class HoloWheelActivity extends Activity {
         }
 
         totalDays = days * numberSelected;
-        pagesPerDay = bookPages / totalDays;
-        if(pagesPerDay <1){
-            pagesPerDay = 1;
-        }
+        pagesPerDay = bookPages/totalDays;
+
+        pagesPerDay = pagesPerDay < 1 ? 1 : pagesPerDay;
         String pages= pagesPerDay > 1 ? "pages" : "page";
+        timeText = numberSelected > 1 ? timeText + "s" : timeText;
 
         TextView finalText = (TextView) findViewById(R.id.display_text);
-        finalText.setText("You're trying to read " + booksText + " in " + digitsText +  " " + timeText +". You will need to read " + pagesPerDay + " " + pages + " a day");
-
-
-
+        finalText.setText("You're trying to read " + booksText + " in " + digitsText +  " " + timeText +".\nYou will need to read " + pagesPerDay + " " + pages + " a day");
     }
 
     private class NumberAdapter extends AbstractWheelTextAdapter {
@@ -208,16 +205,10 @@ public class HoloWheelActivity extends Activity {
         }
     }
 
-    /**
-     * Adapter for countries
-     */
     private class BookAdapter extends AbstractWheelTextAdapter {
-        // City names
-        final String cities[] = new String[]{"Sri Isopanishad", "Srimad Bhagavatam", "Krishna Book", "Caitanya Caritamrta", "Bhagavad Gita As It Is", "Teaching of Lord Caitanya", "Nectar of Instruction", "Nectar of Devotion"};
 
-        /**
-         * Constructor
-         */
+        final String books[] = new String[]{"Sri Isopanishad", "Srimad Bhagavatam", "Krishna Book", "Caitanya Caritamrta", "Bhagavad Gita As It Is", "Teaching of Lord Caitanya", "Nectar of Instruction", "Nectar of Devotion"};
+
         protected BookAdapter(Context context) {
             super(context, R.layout.city_holo_layout, NO_RESOURCE);
 
@@ -232,12 +223,12 @@ public class HoloWheelActivity extends Activity {
 
         @Override
         public int getItemsCount() {
-            return cities.length;
+            return books.length;
         }
 
         @Override
         protected CharSequence getItemText(int index) {
-            return cities[index];
+            return books[index];
         }
     }
 }
