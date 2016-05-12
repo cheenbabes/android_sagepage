@@ -5,19 +5,21 @@
 	android:orientation="vertical"
 	android:background="@drawable/layout_bg_holo"
 	android:layout_width="fill_parent">
-	
-	<!--<TextView-->
-		<!--android:layout_width="wrap_content"-->
-		<!--android:layout_height="wrap_content"-->
-		<!--android:layout_marginTop="24dp"-->
-		<!--android:layout_gravity="center_horizontal"-->
-		<!--android:textSize="20sp"-->
-		<!--android:text="Be a Sage Page By Page"/>-->
+
+	<TextView android:id="@+id/display_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="24dp"
+		android:layout_gravity="center_horizontal"
+		android:textSize="20sp"
+		android:text="HI IM DEMO TEXT" />
+
 	<!-- -->
 	<!--Use this to add space between wheels and header-->
 	<!--<Space-->
 		<!--android:layout_width="wrap_content"-->
 		<!--android:layout_height="24dp" />-->
+
 	<LinearLayout
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -44,13 +46,10 @@
 			android:paddingLeft="12dp"/>
 	</LinearLayout>
 
-	<TextView
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:layout_marginTop="24dp"
-	android:layout_gravity="center_horizontal"
-	android:textSize="20sp"
-	android:text="To read"/>
+
 
 
 </LinearLayout>
+
+
+
