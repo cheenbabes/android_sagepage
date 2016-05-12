@@ -84,7 +84,6 @@ public class HoloWheelActivity extends Activity {
     };
 
     private void updateText(){
-        TextView finalText = (TextView) findViewById(R.id.display_text);
         final WheelView books = (WheelView) findViewById(R.id.book);
         final WheelView time = (WheelView) findViewById(R.id.time_length);
         final WheelView digits = (WheelView) findViewById(R.id.digits);
@@ -93,13 +92,70 @@ public class HoloWheelActivity extends Activity {
         TimeAdapter timeAdapter = new TimeAdapter(this);
         NumberAdapter numberAdapter = new NumberAdapter(this);
 
-
-        int totalDays, pages, days = 0;
-
         String booksText = bookAdapter.getItemText(books.getCurrentItem()).toString();
         String timeText = timeAdapter.getItemText(time.getCurrentItem()).toString();
         String digitsText = numberAdapter.getItemText(digits.getCurrentItem()).toString();
-        finalText.setText("You're trying to read " + booksText + " in " + digitsText +  " " + timeText);
+
+        Integer numberSelected = Integer.parseInt(digitsText);
+        if(numberSelected > 1){
+            //lol hack for plurals
+            digitsText = digitsText + "s";
+        }
+
+        int totalDays, pagesPerDay, bookPages, days = 0;
+        switch(timeText){
+            case "Week":
+                days = 7;
+                break;
+            case "Month":
+                days = 30;
+                break;
+            case "Year":
+                days = 365;
+                break;
+        }
+
+        switch(booksText){
+            case "Sri Isopanishad":
+                bookPages = 158;
+                break;
+            case "Krishna Book":
+                bookPages = 706;
+                break;
+            case "Nectar of Instruction":
+                bookPages = 97;
+                break;
+            case "Nectar of Devotion":
+                bookPages = 407;
+                break;
+            case "Teachings of Lord Caitanya":
+                bookPages = 347;
+                break;
+            case "Bhagavad Gita As It Is":
+                bookPages = 868;
+                break;
+            case "Srimad Bhagavatam":
+                bookPages = 15119;
+                break;
+            case "Caitanya Caritamrta":
+                bookPages = 6621;
+                break;
+            default:
+                bookPages =1;
+        }
+
+        totalDays = days * numberSelected;
+        pagesPerDay = bookPages / totalDays;
+        if(pagesPerDay <1){
+            pagesPerDay = 1;
+        }
+        String pages= pagesPerDay > 1 ? "pages" : "page";
+
+        TextView finalText = (TextView) findViewById(R.id.display_text);
+        finalText.setText("You're trying to read " + booksText + " in " + digitsText +  " " + timeText +". You will need to read " + pagesPerDay + " " + pages + " a day");
+
+
+
     }
 
     private class NumberAdapter extends AbstractWheelTextAdapter {
@@ -157,7 +213,7 @@ public class HoloWheelActivity extends Activity {
      */
     private class BookAdapter extends AbstractWheelTextAdapter {
         // City names
-        final String cities[] = new String[]{"Sri Isopanisad", "Srimad Bhagavatam", "Krsna Book", "Caitanya Caritamrta", "Bhagavad Gita", "Teaching of Lord Caitanya"};
+        final String cities[] = new String[]{"Sri Isopanishad", "Srimad Bhagavatam", "Krishna Book", "Caitanya Caritamrta", "Bhagavad Gita As It Is", "Teaching of Lord Caitanya", "Nectar of Instruction", "Nectar of Devotion"};
 
         /**
          * Constructor
